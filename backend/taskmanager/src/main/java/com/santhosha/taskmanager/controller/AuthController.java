@@ -4,6 +4,8 @@ import com.santhosha.taskmanager.entity.User;
 import com.santhosha.taskmanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.santhosha.taskmanager.dto.LoginResponse;
+import com.santhosha.taskmanager.security.JwtUtil;
 
 @RestController
 @RequestMapping("/auth")
@@ -11,17 +13,25 @@ public class AuthController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
         return userService.registerUser(user);
     }
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user) {
+    public LoginResponse loginUser(@RequestBody User user) {
 
-        return userService.loginUser(
+        User loggedInUser = userService.loginUser(
                 user.getEmail(),
                 user.getPassword()
         );
+
+        String token = jwtUtil.generateToken(
+                loggedInUser.getEmail()
+        );
+
+        return new LoginResponse(token);
     }
 }
