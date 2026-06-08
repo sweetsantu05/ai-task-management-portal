@@ -1,6 +1,7 @@
 package com.santhosha.taskmanager.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tasks")
@@ -12,10 +13,28 @@ public class Task {
 
     private String title;
 
-    @Column(length = 1000)
+    @Column(length = 2000)
     private String description;
 
-    public Task() {
+    private String priority;
+
+    private String dueDate;
+
+    private String status;
+
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+
+        if (status == null || status.isEmpty()) {
+            status = "TODO";
+        }
+
+        if (priority == null || priority.isEmpty()) {
+            priority = "MEDIUM";
+        }
     }
 
     public Long getId() {
@@ -40,6 +59,38 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
 
@@ -76,7 +127,6 @@ public class Task {
 // package com.santhosha.taskmanager.entity;
 
 // import jakarta.persistence.*;
-// import java.time.LocalDateTime;
 
 // @Entity
 // @Table(name = "tasks")
@@ -88,27 +138,10 @@ public class Task {
 
 //     private String title;
 
+//     @Column(length = 1000)
 //     private String description;
 
-//     private String priority;
-
-//     private String status;
-
-//     private LocalDateTime createdAt;
-
 //     public Task() {
-//         this.createdAt = LocalDateTime.now();
-//     }
-
-//     public Task(Long id, String title, String description,
-//                 String priority, String status,
-//                 LocalDateTime createdAt) {
-//         this.id = id;
-//         this.title = title;
-//         this.description = description;
-//         this.priority = priority;
-//         this.status = status;
-//         this.createdAt = createdAt;
 //     }
 
 //     public Long getId() {
@@ -134,28 +167,35 @@ public class Task {
 //     public void setDescription(String description) {
 //         this.description = description;
 //     }
-
-//     public String getPriority() {
-//         return priority;
-//     }
-
-//     public void setPriority(String priority) {
-//         this.priority = priority;
-//     }
-
-//     public String getStatus() {
-//         return status;
-//     }
-
-//     public void setStatus(String status) {
-//         this.status = status;
-//     }
-
-//     public LocalDateTime getCreatedAt() {
-//         return createdAt;
-//     }
-
-//     public void setCreatedAt(LocalDateTime createdAt) {
-//         this.createdAt = createdAt;
-//     }
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

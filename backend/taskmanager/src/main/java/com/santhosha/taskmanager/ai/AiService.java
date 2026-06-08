@@ -24,11 +24,22 @@ public class AiService {
     public String generateTaskDescription(String title) {
 
         String prompt =
-                "For the task: " + title +
-                "\nGenerate:\n" +
-                "1. Task Description\n" +
-                "2. Priority (LOW/MEDIUM/HIGH)\n" +
-                "3. Estimated Time";
+        """
+        For the task title: %s
+
+        Generate:
+
+        Description:
+        A detailed task description.
+
+        Priority:
+        LOW, MEDIUM, or HIGH
+
+        Estimated Time:
+        Example: 2 Hours
+
+        Return only the result.
+        """.formatted(title);
 
         GeminiRequest.Part part =
                 new GeminiRequest.Part(prompt);
@@ -46,8 +57,8 @@ public class AiService {
                 new HttpEntity<>(request, headers);
 
         String url =
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="
-            + apiKey;
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key="
+        + apiKey;
 
         try {
 
@@ -68,20 +79,12 @@ public class AiService {
             .getText();
 
 } 
-       catch (Exception e) {
 
-        return """
-                Task Description:
-                Create and deliver a professional client presentation.
+        catch (Exception e) {
 
-                Priority:
-                HIGH
+        e.printStackTrace();
 
-                Estimated Time:
-                4 Hours
-
-                AI Service Currently Unavailable.
-                """;
+        return "ERROR: " + e.getMessage();
         }
     }
 }
