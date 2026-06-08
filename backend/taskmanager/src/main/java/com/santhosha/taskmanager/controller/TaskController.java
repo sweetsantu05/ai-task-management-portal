@@ -1,4 +1,5 @@
 package com.santhosha.taskmanager.controller;
+
 import com.santhosha.taskmanager.service.TaskService;
 import com.santhosha.taskmanager.entity.Task;
 import org.springframework.web.bind.annotation.*;
@@ -23,5 +24,10 @@ public class TaskController {
     @PostMapping
     public Task createTask(@RequestBody Task task) {
         return taskService.createTask(task);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
     }
 }
