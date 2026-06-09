@@ -473,30 +473,8 @@ Workflow:
 
 ---
 # ER Daigram 
-┌─────────────────────┐
-│       USERS         │
-├─────────────────────┤
-│ id (PK)             │
-│ name                │
-│ email (Unique)      │
-│ password            │
-└──────────┬──────────┘
-           │
-           │ One User
-           │
-           ▼
-┌─────────────────────┐
-│       TASKS         │
-├─────────────────────┤
-│ id (PK)             │
-│ title               │
-│ description         │
-│ priority            │
-│ status              │
-│ due_date            │
-│ created_at          │
-│ user_id (FK)        │
-└─────────────────────┘
+
+![ER daigram](image-2.png)
 
 Relationship:
 One User → Many Tasks
