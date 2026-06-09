@@ -435,31 +435,30 @@ Workflow:
 
 ## Register Page
 
-(Add Screenshot Here)
+![alt text](User_Register.png)
 
 ---
 
 ## Login Page
 
-(Add Screenshot Here)
+![Login Page](LoginPage.png)
 
 ---
 
 ## Dashboard
 
-(Add Screenshot Here)
-
----
-
-## AI Task Generation
-
-(Add Screenshot Here)
+![Dash Board](Dashborad.png)
 
 ---
 
 ## Task Management
 
-(Add Screenshot Here)
+![List of task](list_of_task.png)
+
+---
+## User profile and logout
+
+![User  profile and logout](UserProfile.png)
 
 ---
 
@@ -473,6 +472,46 @@ Workflow:
 - Task Analytics Dashboard
 
 ---
+# ER Daigram 
+┌─────────────────────┐
+│       USERS         │
+├─────────────────────┤
+│ id (PK)             │
+│ name                │
+│ email (Unique)      │
+│ password            │
+└──────────┬──────────┘
+           │
+           │ One User
+           │
+           ▼
+┌─────────────────────┐
+│       TASKS         │
+├─────────────────────┤
+│ id (PK)             │
+│ title               │
+│ description         │
+│ priority            │
+│ status              │
+│ due_date            │
+│ created_at          │
+│ user_id (FK)        │
+└─────────────────────┘
+
+Relationship:
+One User → Many Tasks
+
+---
+
+## Database Schema
+
+### Users Table
+
+![User table ](image.png)
+
+### Tasks Table
+
+![Task Table](image-1.png)
 
 # Author
 
