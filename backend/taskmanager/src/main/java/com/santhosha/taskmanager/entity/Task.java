@@ -24,6 +24,14 @@ public class Task {
 
     private LocalDateTime createdAt;
 
+    private Long userId;
+
+    private String role;
+
+    // @ManyToOne
+    // @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    // private User user;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -91,6 +99,30 @@ public class Task {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    // public User getUser() {
+    //     return user;
+    // }
+
+    // public void setUser(User user) {
+    //     this.user = user;
+    // }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

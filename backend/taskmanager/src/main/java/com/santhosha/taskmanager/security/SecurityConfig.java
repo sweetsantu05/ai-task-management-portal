@@ -28,8 +28,13 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()
+                .requestMatchers(
+                        "/auth/register",
+                        "/auth/login"
+                ).permitAll()
+                .anyRequest().authenticated()
                 )
+                
                 .addFilterBefore(
                         jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class

@@ -33,6 +33,8 @@ public class UserService {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new RuntimeException("Email already exists");
         }
+        
+        user.setRole("USER");
 
         return userRepository.save(user);
     }

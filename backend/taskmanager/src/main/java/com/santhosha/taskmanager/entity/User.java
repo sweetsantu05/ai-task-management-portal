@@ -20,17 +20,31 @@ public class User {
 
     private String password;
 
+    private String role;
+
     // Default Constructor
     public User() {
     }
 
-    // Constructor
-    public User(Long id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+    // // Constructor
+    // public User(Long id, String name, String email, String password) {
+    //     this.id = id;
+    //     this.name = name;
+    //     this.email = email;
+    //     this.password = password;
+    // }
+    public User(Long id,
+            String name,
+            String email,
+            String password,
+            String role) {
+
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+}
 
     // Getters and Setters
     public Long getId() {
@@ -63,5 +77,12 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
